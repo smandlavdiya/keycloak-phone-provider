@@ -37,8 +37,8 @@ public abstract class FullSmsSenderAbstractService implements MessageSenderServi
     @Override
     public void sendSmsMessage(TokenCodeType type, String phoneNumber, String code, int expires, String kind)
             throws MessageSendException {
-        final String defaultMessage = String.format("[%s] - " + type.label + " code: %s, expires: %s minute ",
-                realmDisplay, code, expires / 60);
+        final String defaultMessage = String.format("Dear User, %s is your OTP for mobile number verification. OTP is confidential and valid for 5 minutes. For security reasons, DO NOT share this OTP with anyone. NRLM-LOKOS.", code);
+
         final String MESSAGE = localizeMessage(type, phoneNumber, code, expires).orElse(defaultMessage);
         sendMessage(phoneNumber, MESSAGE);
     }
